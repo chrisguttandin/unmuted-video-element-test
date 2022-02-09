@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Unmuted VideoElement test</title>
+    </head>
+    <body>
+        <h1>Unmuted VideoElement test</h1>
+        <p>This is an example to demonstrate a possible bug in Chrome.</p>
+        <video id="video">
+            <source src="assets/big-buck-bunny.av1.mp4" type="video/mp4; codec=av01" />
+            <source src="assets/big-buck-bunny.hevc.mp4" type="video/mp4; codec=hevc" />
+            <source src="assets/big-buck-bunny.h264.mp4" type="video/mp4; codec=avc1" />
+        </video>
+        <hr />
+        <h2>VideoElement</h2>
+        <p>Clicking the following button will play a video file by using a video element.</p>
+        <button id="toggle-video-element-button">toggle playing a video element</button>
+        <pre><code>const $video = document.getElementById('video');
+
+$video.play();</code></pre>
+        <hr />
+        <h2>VideoElement &amp; MediaElementAudioSourceNode</h2>
+        <p>
+            Clicking the following button will play a video file by using a video element as well. It will also pipe the audio through an
+            AudioContext.
+        </p>
+        <button id="toggle-both-button">toggle playing a video element connected to the Web Audio API</button>
+        <pre><code>const $video = document.getElementById('video');
+
+$video.play();
+
+const audioContext = new AudioContext();
+const mediaElementAudioSourceNode = new MediaElementAudioSourceNode(
+    audioContext,
+    { mediaElement: $video }
+);
+
+mediaElementAudioSourceNode.connect(audioContext.destination);</code></pre>
+        <hr />
+        <h2>VideoElement &amp; MediaElementAudioSourceNode (but unconnected)</h2>
+        <p>
+            Clicking the following button will do the same as the button above. The only difference is that the MediaElementAudioSourceNode
+            will get connected to the destination of the AudioContext.
+        </p>
+        <button id="toggle-web-audio-button">
+            toggle playing a video element connected to the Web Audio API with no downstream connection
+        </button>
+        <pre><code>const $video = document.getElementById('video');
+
+$video.play();
+
+const audioContext = new AudioContext();
+const mediaElementAudioSourceNode = new MediaElementAudioSourceNode(
+    audioContext,
+    { mediaElement: $video }
+);</code></pre>
+        <hr />
+        <p>
+            The video file used on this page was produced by the
+            <a href="https://www.blender.org/" rel="noopener noreferrer" target="_blank">Blender Foundation</a>. It's called
+            <a href="https://peach.blender.org/" rel="noopener noreferrer" target="_blank">Big Buck Bunny</a> and is licensed by a
+            <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener noreferrer" target="_blank">Creative Commons license</a>.
+        </p>
+        <script src="scripts/app.js"></script>
+    </body>
+</html>
