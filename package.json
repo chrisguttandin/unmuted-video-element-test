@@ -10,7 +10,7 @@
     },
     "description": "A demo to test if an unmuted video element keeps playing when used with the Web Audio API.",
     "devDependencies": {
-        "@babel/core": "^7.23.3",
+        "@babel/core": "^7.23.6",
         "@babel/preset-env": "^7.23.3",
         "@commitlint/cli": "^17.8.0",
         "@commitlint/config-angular": "^17.8.0",
