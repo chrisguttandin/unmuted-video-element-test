@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -20,7 +20,7 @@
         <hr />
         <h2>VideoElement</h2>
         <p>Clicking the following button will play a video file by using a video element.</p>
-        <button id="toggle-video-element-button">toggle playing a video element</button>
+        <button id="toggle-video-element-button" type="button">toggle playing a video element</button>
         <pre><code>const $video = document.getElementById('video');
 
 $video.play();</code></pre>
@@ -30,7 +30,7 @@ $video.play();</code></pre>
             Clicking the following button will play a video file by using a video element as well. It will also pipe the audio through an
             AudioContext.
         </p>
-        <button id="toggle-both-button">toggle playing a video element connected to the Web Audio API</button>
+        <button id="toggle-both-button" type="button">toggle playing a video element connected to the Web Audio API</button>
         <pre><code>const $video = document.getElementById('video');
 
 $video.play();
@@ -38,7 +38,7 @@ $video.play();
 const audioContext = new AudioContext();
 const mediaElementAudioSourceNode = new MediaElementAudioSourceNode(
     audioContext,
-    { mediaElement: $video }
+    &lbrace; mediaElement: $video &rbrace;
 );
 
 mediaElementAudioSourceNode.connect(audioContext.destination);</code></pre>
@@ -48,7 +48,7 @@ mediaElementAudioSourceNode.connect(audioContext.destination);</code></pre>
             Clicking the following button will do the same as the button above. The only difference is that the MediaElementAudioSourceNode
             will get connected to the destination of the AudioContext.
         </p>
-        <button id="toggle-web-audio-button">
+        <button id="toggle-web-audio-button" type="button">
             toggle playing a video element connected to the Web Audio API with no downstream connection
         </button>
         <pre><code>const $video = document.getElementById('video');
@@ -58,7 +58,7 @@ $video.play();
 const audioContext = new AudioContext();
 const mediaElementAudioSourceNode = new MediaElementAudioSourceNode(
     audioContext,
-    { mediaElement: $video }
+    &lbrace; mediaElement: $video &rbrace;
 );</code></pre>
         <hr />
         <p>
